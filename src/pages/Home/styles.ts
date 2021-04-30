@@ -25,7 +25,7 @@ export const Box = styled.ScrollView`
 `;
 
 export const Card = styled.View<PropsCard>`
-    width: ${ Dimensions.get('window').width * 0.9}px;
+    width: ${ Dimensions.get('window').width * 0.95}px;
     height: ${ Dimensions.get('window').height * 0.3 }px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
