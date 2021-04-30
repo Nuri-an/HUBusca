@@ -57,3 +57,7 @@ export const Author = styled.Text`
     text-align: right;
     color: #8367F6;
 `;
+
+export const Loading = styled.ActivityIndicator`
+    margin-left: 20px;
+`;

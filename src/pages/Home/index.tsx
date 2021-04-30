@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { Container, Header, Box, Card, Title, Body, Author } from './styles';
+import { Container, Header, Box, Card, Title, Body, Author, Loading } from './styles';
 import { LogoIcon } from '../../assets/icons';
 
+import { PropsPost } from '../../services/@types/Posts'
+import { PropsUser } from '../../services/@types/Users'
+import { getAllPosts, getAllUser } from '../../services';
+
 export const Home: React.FC = () => {
+    const [post, setPosts] = useState<Array<PropsPost>>();
+    const [users, setUsers] = useState<Array<PropsUser>>();
+
+    useEffect(() => {
+        getAllPosts().then(function (response) {
+            setPosts(response)
+        })
+
+        getAllUser().then(function (response) {
+            setUsers(response)
+        })
+    }, [])
+
+    function GetUsername(id: number) {
+        const user = users?.find(user => user.id === id);
+
+        return user?.username;
+    }
 
     return (
         <Container>
@@ -16,17 +39,25 @@ export const Home: React.FC = () => {
                     <LogoIcon />
                 </Header>
                 <Box>
-                    <Card isLast={false}>
-                        <Title>
-                            sunt aut facere repellat provident occaecati excepturi optio reprehenderit
-                        </Title>
-                        <Body>
-                            quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto
-                        </Body>
-                        <Author>
-                            @Bret
-                        </Author>
-                    </Card>
+                    {
+                        post?.length === 0
+                            ? <Loading size='large' color='#000' />
+                            : post?.map((item, index) => (
+                                <Card isLast={index === (post.length - 1)} key={index}>
+                                    <Title>
+                                        {item.title}
+                                    </Title>
+                                    <Body>
+                                        {item.body}
+                                    </Body>
+                                    <TouchableOpacity onPress={() => console.log(item.id)}>
+                                        <Author>
+                                            @{GetUsername(item.id)}
+                                        </Author>
+                                    </TouchableOpacity>
+                                </Card>
+                            ))
+                    }
                 </Box>
             </LinearGradient>
         </Container>
