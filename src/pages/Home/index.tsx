@@ -54,7 +54,7 @@ export const Home: React.FC = () => {
                                     </Body>
                                     <TouchableOpacity onPress={() => navigation.navigate('User', { userId: item.userId })}>
                                         <Author>
-                                            @{GetUsername(item.id)}
+                                            @{GetUsername(item.userId)}
                                         </Author>
                                     </TouchableOpacity>
                                 </Card>
