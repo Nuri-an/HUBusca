@@ -11,7 +11,7 @@ export const Container = styled.SafeAreaView`
 
 export const Box = styled.ScrollView`
     flex: 1;
-    padding-top: 50px;
+    padding-top: ${StatusBar.currentHeight && StatusBar.currentHeight + 20}px;
     padding-right: 20px;
     padding-left: 20px;
 `;
@@ -19,7 +19,7 @@ export const Box = styled.ScrollView`
 export const Card = styled.View<PropsCard>`
     width: ${ Dimensions.get('window').width * 0.89}px;
     border-radius: 15px;
-    margin-top: 100px;
+    margin-top: 80px;
     background-color: #F4F4F4;
     padding: 15px;
     align-self: center;

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import { RouteProp, useRoute } from '@react-navigation/core';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
+import { PropsUser } from '../../services/@types/Users';
+import { getUser } from '../../services';
 import {
     Container,
     Box,
@@ -18,10 +23,27 @@ import {
     PhoneIcon,
     LinkIcon,
     CompanyIcon,
-    KeyIcon
+    KeyIcon,
+    ChevronLeftIcon,
 } from '../../assets/icons';
 
+type ParamList = {
+    User: {
+        userId: number;
+    };
+};
+
 export const User: React.FC = () => {
+    const route = useRoute<RouteProp<ParamList, 'User'>>();
+    const [user, setUser] = useState<PropsUser>();
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        getUser(route.params.userId).then((response) => {
+            setUser(response);
+        })
+    }, []);
+
     return (
         <Container>
             <LinearGradient
@@ -29,34 +51,37 @@ export const User: React.FC = () => {
                 style={{ flex: 1 }}
             >
                 <Box>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                        <ChevronLeftIcon width={24} height={24} color='#000000' />
+                    </TouchableOpacity>
                     <Card isLast={false}>
                         <BoxIcon>
                             <UserIcon width={50} height={50} color={'#8367F6'} />
                         </BoxIcon>
                         <Author>
-                            @Bret
+                            @{user?.username}
                         </Author>
                         <Name>
-                            Leanne Graham
+                            {user?.name}
                         </Name>
                         <Content>
                             <PinIcon width={20} height={20} />
                             <Description>
-                                Gwenborough, Kulas Light, Apt. 556
+                                {user?.address.city}, {user?.address.street}, {user?.address.suite}
                             </Description>
                         </Content>
 
                         <Content>
                             <PhoneIcon width={20} height={20} />
                             <Description>
-                                1-770-736-8031 x56442
+                                {user?.phone}
                             </Description>
                         </Content>
 
                         <Content>
                             <LinkIcon width={20} height={20} />
                             <Description>
-                                hildegard.org
+                                {user?.website}
                             </Description>
                         </Content>
                     </Card>
@@ -66,15 +91,15 @@ export const User: React.FC = () => {
                             <CompanyIcon width={50} height={50} color={'#0057FF'} />
                         </BoxIcon>
                         <Author>
-                            Romaguera-Crona
+                            {user?.company.name}
                         </Author>
                         <Name>
-                            "Multi-layered client-server neural-net"
+                            "{user?.company.catchPhrase}"
                         </Name>
                         <Content>
                             <KeyIcon width={20} height={20} />
                             <Description>
-                                harness real-time e-markets
+                                {user?.company.bs}
                             </Description>
                         </Content>
                     </Card>
