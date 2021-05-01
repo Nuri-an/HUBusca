@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Platform, Keyboard } from 'react-native';
 
@@ -16,6 +16,7 @@ import {
 } from './styles';
 import { setPost } from '../../services';
 import { PropsPost } from '../../services/@types/Posts';
+import AuthContext from '../../contexts/Posts';
 
 export const PlusPost: React.FC = () => {
     const [dataForm , setDataForm] = useState<PropsPost>({
@@ -25,6 +26,7 @@ export const PlusPost: React.FC = () => {
         body: ''
     });
     const [send, setSend] = useState<number>();
+    const { getPost, storePost }= useContext(AuthContext);
 
     return (
         <Container>
@@ -69,9 +71,12 @@ export const PlusPost: React.FC = () => {
 
                         <Button
                             onPress={
-                                () => setPost(dataForm).then((response) => {
-                                    console.log(response)
+                                () => setPost(dataForm).then(async (response) => {
                                     setSend(response.id)
+                                    await storePost(response)
+                                    getPost().then((posts) => {
+                                        console.log(posts)
+                                    })
                                 })
                             }
                         >
