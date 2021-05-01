@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, Header, Box, Card, Title, Body, Author, Loading } from './styles';
 import { LogoIcon } from '../../assets/icons';
@@ -12,6 +13,7 @@ import { getAllPosts, getAllUser } from '../../services';
 export const Home: React.FC = () => {
     const [post, setPosts] = useState<Array<PropsPost>>();
     const [users, setUsers] = useState<Array<PropsUser>>();
+    const navigation = useNavigation();
 
     useEffect(() => {
         getAllPosts().then(function (response) {
@@ -50,7 +52,7 @@ export const Home: React.FC = () => {
                                     <Body>
                                         {item.body}
                                     </Body>
-                                    <TouchableOpacity onPress={() => console.log(item.id)}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('User', { userId: item.userId })}>
                                         <Author>
                                             @{GetUsername(item.id)}
                                         </Author>
