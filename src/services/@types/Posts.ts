@@ -1,6 +1,6 @@
 export interface PropsPost {
-    userId: number,
-    id: number,
+    userId: number | undefined,
+    id: number | undefined,
     title: string,
     body: string
 }
