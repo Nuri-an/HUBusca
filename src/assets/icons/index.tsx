@@ -1,3 +1,4 @@
+import { ChevronLeftIcon } from "./Chevron"
 import { CompanyIcon } from "./Company"
 import { HomeIcon } from "./Home"
 import { KeyIcon } from "./Key"
@@ -11,6 +12,7 @@ import { UserIcon } from "./User"
 
 
 export {
+    ChevronLeftIcon,
     CompanyIcon,
     HomeIcon,
     KeyIcon,
