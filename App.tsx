@@ -14,7 +14,7 @@ import PostsContext from './src/contexts/Posts/index';
 import { usePost } from './src/hooks/usePost';
 
 export default function App() {
-  const { getPost, storePost } = usePost();
+  const { getPost, storePost, removePost } = usePost();
   
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -28,7 +28,7 @@ export default function App() {
 
   } else {
     return (
-      <PostsContext.Provider value={{ getPost, storePost }}>
+      <PostsContext.Provider value={{ getPost, storePost, removePost }}>
         <Routes />
       </PostsContext.Provider>
     );

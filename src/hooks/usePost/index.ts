@@ -17,7 +17,6 @@ export const usePost = () => {
                 .then(async (posts) => {
                     const newPost = posts ? JSON.parse(posts) : [];
                     newPost.push(value);
-                    console.log(newPost)
                     await AsyncStorage.setItem('@posts', JSON.stringify(newPost))
                 });
         } catch (e) {
@@ -25,8 +24,17 @@ export const usePost = () => {
         }
     }
 
+    const removePost = async () => {
+        try {
+            await AsyncStorage.removeItem('@posts')
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return {
         getPost,
-        storePost
+        storePost,
+        removePost
     }
 }

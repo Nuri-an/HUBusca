@@ -25,7 +25,7 @@ export const Title = styled.Text<PropsTitle>`
     font-family: Poppins_700Bold;
     text-align: center;
     color: #000;
-    display:  ${({ invisible }) => invisible ? 'none' : 'flex'}
+    display:  ${({ invisible }) => invisible ? 'none' : 'flex'};
 `;
 
 export const Box = styled.ScrollView`
