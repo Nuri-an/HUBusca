@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Platform, Keyboard } from 'react-native';
-import Toast, { BaseToast } from 'react-native-toast-message';
+import { Platform, Keyboard, ActivityIndicator } from 'react-native';
+import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
 
 import { setPost } from '../../services';
@@ -22,14 +22,15 @@ import {
 } from './styles';
 
 export const PlusPost: React.FC = () => {
-    const [dataForm, setDataForm] = useState<PropsPost>({
+    const initialValue = {
         userId: undefined,
         id: undefined,
         title: '',
         body: ''
-    });
+    }
+    const [dataForm, setDataForm] = useState<PropsPost>(initialValue);
     const [send, setSend] = useState(false);
-    const { getPost, storePost } = useContext(AuthContext);
+    const { storePost } = useContext(AuthContext);
     const navigation = useNavigation();
 
     return (
@@ -40,9 +41,13 @@ export const PlusPost: React.FC = () => {
             >
                 <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Header>
-                    <Title invisible={send}>
-                        Adicione um novo Post
-                    </Title>
+                    {
+                        !send && (
+                            <Title>
+                                Adicione um novo Post
+                            </Title>
+                        )
+                    }
                 </Header>
                 <Box>
                     <Form
@@ -80,9 +85,6 @@ export const PlusPost: React.FC = () => {
                             onPress={
                                 () => setPost(dataForm).then(async (response) => {
                                     await storePost(response)
-                                    getPost().then((posts) => {
-                                        console.log(posts)
-                                    })
                                     setSend(true)
                                     if (response) {
                                         Toast.show({
@@ -91,7 +93,11 @@ export const PlusPost: React.FC = () => {
                                             text1: 'Post enviado!',
                                             text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
                                         });
-                                        setTimeout(() => navigation.navigate('Profile'), 5000);
+                                        setTimeout(() => {
+                                            setSend(false);
+                                            setDataForm(initialValue);
+                                            navigation.navigate('Profile'), 5000
+                                        });
                                     } else {
                                         Toast.show({
                                             type: 'error',
@@ -101,20 +107,21 @@ export const PlusPost: React.FC = () => {
                                         });
                                         setTimeout(() => {
                                             setSend(false);
-                                            setDataForm({
-                                                userId: undefined,
-                                                id: undefined,
-                                                title: '',
-                                                body: ''
-                                            });
+                                            setDataForm(initialValue);
                                         }, 5000);
                                     }
                                 })
                             }
                         >
-                            <TextButton>
-                                Enviar
-                            </TextButton>
+                            {
+                                send
+                                    ? <ActivityIndicator color="#FFFFFF" />
+                                    : (
+                                        <TextButton>
+                                            Enviar
+                                        </TextButton>
+                                    )
+                            }
                         </Button>
 
                     </Form>

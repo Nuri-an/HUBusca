@@ -1,10 +1,6 @@
 import styled from 'styled-components/native';
 import { Dimensions, StatusBar } from 'react-native';
 
-interface PropsTitle {
-    invisible: boolean
-}
-
 export const Container = styled.SafeAreaView`
     flex: 1;
 `;
@@ -20,12 +16,11 @@ export const Header = styled.View`
     justify-content: flex-end;
 `;
 
-export const Title = styled.Text<PropsTitle>`
+export const Title = styled.Text`
     font-size: 18px;
-    font-family: Poppins_700Bold;
+    font-family: Poppins_500Medium;
     text-align: center;
     color: #000;
-    display:  ${({ invisible }) => invisible ? 'none' : 'flex'};
 `;
 
 export const Box = styled.ScrollView`

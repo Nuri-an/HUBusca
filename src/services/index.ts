@@ -14,10 +14,6 @@ export const setPost = async ( data: PropsPost ): Promise<PropsPost> => {
     return response.data;
 };
 
-export const deletePost = async ( id: number ) => {
-    api.delete(`/posts/${id}`);
-};
-
 export const getAllUser = async (): Promise<Array<PropsUser>> => {
     const response = await api.get('/users');
 
