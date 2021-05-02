@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, RefObject } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { Container, Header, Photo, Title, Box } from './styles';
@@ -7,8 +7,7 @@ import { PropsPost } from '../../services/@types/Posts';
 import { CardComponent } from '../../components/Card';
 
 import Image from '../../assets/Profile/profile.jpg';
-import { ScrollView } from 'styled-components-react-native/node_modules/@types/react-native';
-
+import Toast from 'react-native-toast-message';
 
 export const Profile: React.FC = () => {
     const { getPost, removePost } = useContext(PostsContext);
@@ -40,6 +39,7 @@ export const Profile: React.FC = () => {
                         Confira suas Postagens
                     </Title>
                 </Header>
+                <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Box ref={scrollViewRef}>
                     {
                         post?.map((item, index) => (
@@ -53,8 +53,13 @@ export const Profile: React.FC = () => {
                                 key={index}
                                 remove={async () => {
                                     await removePost(index);
-                                    console.log(index)
                                     loadPost()
+                                    Toast.show({
+                                        type: 'success',
+                                        visibilityTime: 3000,
+                                        text1: 'Post removido!',
+                                        text2: 'Tudo certo! Seu post foi removido com sucesso 🎉'
+                                    });
                                 }}
                             />
                         ))
