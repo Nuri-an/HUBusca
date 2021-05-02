@@ -4,7 +4,7 @@ import { PropsPost } from '../../services/@types/Posts';
 interface PropsUsePost {
     getPost: () => Promise<Array<PropsPost> | undefined>,
     storePost: (e: PropsPost) => Promise<void>,
-    removePost: () => Promise<void>
+    removePost: (index: number) => Promise<string | undefined>
 }
 
 const PostsContext = createContext<PropsUsePost>({} as PropsUsePost);

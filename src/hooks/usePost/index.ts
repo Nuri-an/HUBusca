@@ -16,7 +16,7 @@ export const usePost = () => {
             AsyncStorage.getItem('@posts')
                 .then(async (posts) => {
                     const newPost = posts ? JSON.parse(posts) : [];
-                    newPost.push(value);
+                    newPost.unshift(value);
                     await AsyncStorage.setItem('@posts', JSON.stringify(newPost))
                 });
         } catch (e) {
@@ -24,9 +24,17 @@ export const usePost = () => {
         }
     }
 
-    const removePost = async () => {
+    const removePost = async ( index: number ): Promise<string | undefined> => {
         try {
-            await AsyncStorage.removeItem('@posts')
+            await AsyncStorage.getItem('@posts')
+                .then(async (posts) => {
+                    if(posts) {
+                        const newPosts = posts ? JSON.parse(posts) : undefined
+                        newPosts.splice(index, 1)
+                        await AsyncStorage.setItem('@posts', JSON.stringify(newPosts))
+                    }
+                })
+            return 'Post removido!'
         } catch (e) {
             console.log(e);
         }
