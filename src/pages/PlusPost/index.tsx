@@ -57,6 +57,7 @@ export const PlusPost: React.FC = () => {
                                 ...dataForm,
                                 title: val
                             })}
+                            value={dataForm.title}
                             onSubmitEditing={Keyboard.dismiss}
                         />
 
@@ -71,6 +72,7 @@ export const PlusPost: React.FC = () => {
                                 ...dataForm,
                                 body: val
                             })}
+                            value={dataForm.body}
                             onSubmitEditing={Keyboard.dismiss}
                         />
 
@@ -81,10 +83,11 @@ export const PlusPost: React.FC = () => {
                                     getPost().then((posts) => {
                                         console.log(posts)
                                     })
+                                    setSend(true)
                                     if (response) {
-                                        setSend(true)
                                         Toast.show({
                                             type: 'success',
+                                            visibilityTime: 4000,
                                             text1: 'Post enviado!',
                                             text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
                                         });
@@ -92,9 +95,19 @@ export const PlusPost: React.FC = () => {
                                     } else {
                                         Toast.show({
                                             type: 'error',
+                                            visibilityTime: 4000,
                                             text1: 'Opsss!',
                                             text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
                                         });
+                                        setTimeout(() => {
+                                            setSend(false);
+                                            setDataForm({
+                                                userId: undefined,
+                                                id: undefined,
+                                                title: '',
+                                                body: ''
+                                            });
+                                        }, 5000);
                                     }
                                 })
                             }
