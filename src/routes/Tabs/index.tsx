@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { PlusPost } from '../pages/PlusPost';
-import { Profile } from '../pages/Profile';
-import { HomeIcon, PlusIcon, UserIcon } from '../assets/icons';
+import { PlusPost } from '../../pages/PlusPost';
+import { Profile } from '../../pages/Profile';
+import { HomeIcon, PlusIcon, UserIcon } from '../../assets/icons';
 import { Typogaphy, ButtonPlus } from './styles';
 
-import { RoutesStack } from './stack';
+import { RoutesStack } from '../Stack';
 import { Keyboard } from 'react-native';
 
 const Tab = createBottomTabNavigator();

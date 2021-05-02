@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { RoutesTabs } from './tabs';
+import { RoutesTabs } from './Tabs';
 
 export default function Routes() {
 

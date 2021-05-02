@@ -16,7 +16,6 @@ export const Typogaphy = styled.Text<PropsText>`
     color: ${({ color }) => color };
 `;
 
-
 export const ButtonPlus = styled.View<PropsButtonPlus>`
     width: 80px;
     height: 80px;
