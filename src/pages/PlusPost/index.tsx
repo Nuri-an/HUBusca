@@ -39,16 +39,12 @@ export const PlusPost: React.FC = () => {
                 colors={['rgba(111,52,237,0.34)', 'rgba(10, 88, 255, 0.35)']}
                 style={{ flex: 1 }}
             >
-                <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Header>
-                    {
-                        !send && (
-                            <Title>
-                                Adicione um novo Post
-                            </Title>
-                        )
-                    }
+                    <Title>
+                        Adicione um novo Post
+                    </Title>
                 </Header>
+                <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Box>
                     <Form
                         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -83,34 +79,36 @@ export const PlusPost: React.FC = () => {
 
                         <Button
                             onPress={
-                                () => setPost(dataForm).then(async (response) => {
-                                    await storePost(response)
-                                    setSend(true)
-                                    if (response) {
-                                        Toast.show({
-                                            type: 'success',
-                                            visibilityTime: 4000,
-                                            text1: 'Post enviado!',
-                                            text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
-                                        });
-                                        setTimeout(() => {
-                                            setSend(false);
-                                            setDataForm(initialValue);
-                                            navigation.navigate('Profile'), 5000
-                                        });
-                                    } else {
-                                        Toast.show({
-                                            type: 'error',
-                                            visibilityTime: 4000,
-                                            text1: 'Opsss!',
-                                            text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
-                                        });
-                                        setTimeout(() => {
-                                            setSend(false);
-                                            setDataForm(initialValue);
-                                        }, 5000);
-                                    }
-                                })
+                                () => {
+                                    setPost(dataForm).then(async (response) => {
+                                        setSend(true);
+                                        await storePost(response)
+                                        if (response) {
+                                            Toast.show({
+                                                type: 'success',
+                                                visibilityTime: 4000,
+                                                text1: 'Post enviado!',
+                                                text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
+                                            });
+                                            setTimeout(() => {
+                                                setSend(false);
+                                                setDataForm(initialValue);
+                                                navigation.navigate('Profile')
+                                            }, 5000);
+                                        } else {
+                                            Toast.show({
+                                                type: 'error',
+                                                visibilityTime: 4000,
+                                                text1: 'Opsss!',
+                                                text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
+                                            });
+                                            setTimeout(() => {
+                                                setSend(false);
+                                                setDataForm(initialValue);
+                                            }, 5000);
+                                        }
+                                    })
+                                }
                             }
                         >
                             {
