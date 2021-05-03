@@ -36,6 +36,9 @@ export const Box = styled.ScrollView`
     padding-right: 20px;
 `;
 
-export const Content = styled.View`
-    margin-bottom: 100px;
+export const TextEmpty = styled.Text`
+    font-size: 14px;
+    font-family: Poppins_500Medium_Italic;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.45);
 `;

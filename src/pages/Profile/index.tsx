@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { Container, Header, Photo, Title, Box } from './styles';
+import { Container, Header, Photo, Title, Box, TextEmpty } from './styles';
 import PostsContext from '../../contexts/Posts';
 import { PropsPost } from '../../services/@types/Posts';
 import { CardComponent } from '../../components/Card';
@@ -21,7 +21,7 @@ export const Profile: React.FC = () => {
     function loadPost() {
         getPost().then(async (response) => {
             setPost(response)
-            if(response?.length !== post?.length){
+            if (response?.length !== post?.length) {
                 scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true })
             }
         });
@@ -42,27 +42,29 @@ export const Profile: React.FC = () => {
                 <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Box ref={scrollViewRef}>
                     {
-                        post?.map((item, index) => (
-                            <CardComponent
-                                body={item.body}
-                                isLast={index === (post.length - 1)}
-                                isProfile={true}
-                                title={item.title}
-                                userId={item.userId}
-                                userName="You"
-                                key={index}
-                                remove={async () => {
-                                    await removePost(index);
-                                    loadPost()
-                                    Toast.show({
-                                        type: 'success',
-                                        visibilityTime: 3000,
-                                        text1: 'Post removido!',
-                                        text2: 'Tudo certo! Seu post foi removido com sucesso 🎉'
-                                    });
-                                }}
-                            />
-                        ))
+                        post === undefined
+                            ? <TextEmpty > Você ainda não possui posts cadastrados! </TextEmpty>
+                            : post?.map((item, index) => (
+                                <CardComponent
+                                    body={item.body}
+                                    isLast={index === (post.length - 1)}
+                                    isProfile={true}
+                                    title={item.title}
+                                    userId={item.userId}
+                                    userName="You"
+                                    key={index}
+                                    remove={async () => {
+                                        await removePost(index);
+                                        loadPost()
+                                        Toast.show({
+                                            type: 'success',
+                                            visibilityTime: 3000,
+                                            text1: 'Post removido!',
+                                            text2: 'Tudo certo! Seu post foi removido com sucesso 🎉'
+                                        });
+                                    }}
+                                />
+                            ))
                     }
                 </Box>
             </LinearGradient>
