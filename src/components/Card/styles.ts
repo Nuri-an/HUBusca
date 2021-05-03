@@ -11,7 +11,6 @@ interface PropsFooter {
 
 export const Card = styled.View<PropsCard>`
     width: ${ Dimensions.get('window').width * 0.95}px;
-    /*min-height: ${ Dimensions.get('window').height * 0.3 }px;*/
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: #F4F4F4;

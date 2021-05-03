@@ -5,7 +5,7 @@ import Svg, { Polyline } from 'react-native-svg';
 interface Props {
     width: number;
     height: number;
-    color: '#8367F6' | '#0057FF' | '#000000'
+    color: '#000000'
 }
 
 export const ChevronLeftIcon: React.FC<Props> = ({ width, height, color }) => (

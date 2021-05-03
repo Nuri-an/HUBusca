@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { TrashIcon } from '../../assets/icons';
-import PostsContext from '../../contexts/Posts';
 import { Card, Title, Body, Footer, Author } from './styles';
 
 interface Props {

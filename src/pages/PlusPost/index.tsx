@@ -33,6 +33,37 @@ export const PlusPost: React.FC = () => {
     const { storePost } = useContext(AuthContext);
     const navigation = useNavigation();
 
+    function handlePost() {
+        setPost(dataForm).then(async (response) => {
+            setSend(true);
+            await storePost(response)
+            if (response) {
+                Toast.show({
+                    type: 'success',
+                    visibilityTime: 4000,
+                    text1: 'Post enviado!',
+                    text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
+                });
+                setTimeout(() => {
+                    setSend(false);
+                    setDataForm(initialValue);
+                    navigation.navigate('Profile')
+                }, 5000);
+            } else {
+                Toast.show({
+                    type: 'error',
+                    visibilityTime: 4000,
+                    text1: 'Opsss!',
+                    text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
+                });
+                setTimeout(() => {
+                    setSend(false);
+                    setDataForm(initialValue);
+                }, 5000);
+            }
+        })
+    }
+
     return (
         <Container>
             <LinearGradient
@@ -68,6 +99,7 @@ export const PlusPost: React.FC = () => {
                         <TextArea
                             placeholder="Descrição do seu post"
                             multiline={true}
+                            numberOfLines={12}
                             textAlignVertical="top"
                             onChangeText={(val) => setDataForm({
                                 ...dataForm,
@@ -78,39 +110,7 @@ export const PlusPost: React.FC = () => {
                         />
 
                         <Button
-                            onPress={
-                                () => {
-                                    setPost(dataForm).then(async (response) => {
-                                        setSend(true);
-                                        await storePost(response)
-                                        if (response) {
-                                            Toast.show({
-                                                type: 'success',
-                                                visibilityTime: 4000,
-                                                text1: 'Post enviado!',
-                                                text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
-                                            });
-                                            setTimeout(() => {
-                                                setSend(false);
-                                                setDataForm(initialValue);
-                                                navigation.navigate('Profile')
-                                            }, 5000);
-                                        } else {
-                                            Toast.show({
-                                                type: 'error',
-                                                visibilityTime: 4000,
-                                                text1: 'Opsss!',
-                                                text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
-                                            });
-                                            setTimeout(() => {
-                                                setSend(false);
-                                                setDataForm(initialValue);
-                                            }, 5000);
-                                        }
-                                    })
-                                }
-                            }
-                        >
+                            onPress={() => handlePost()}>
                             {
                                 send
                                     ? <ActivityIndicator color="#FFFFFF" />

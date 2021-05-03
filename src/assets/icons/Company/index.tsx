@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 interface Props {
     width: number;
     height: number;
-    color: '#8367F6' | '#0057FF'
+    color: '#0057FF'
 }
 
 export const CompanyIcon: React.FC<Props> = ({ width, height, color }) => (

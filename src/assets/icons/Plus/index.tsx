@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Svg, { Path, Polyline, Line } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 interface Props {
     width: number;
     height: number;
-    color: '#8367F6' | '#0057FF' | '#FFFFFF'
+    color: '#FFFFFF'
 }
 
 export const PlusIcon: React.FC<Props> = ({ width, height, color }) => (

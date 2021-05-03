@@ -20,7 +20,7 @@ export const getAllUser = async (): Promise<Array<PropsUser>> => {
     return response.data;
 };
 
-export const getUser = async ( id: number ): Promise<PropsUser> => {
+export const getUser = async ( id: number | undefined ): Promise<PropsUser> => {
     const response = await api.get(`/users/${id}`);
 
     return response.data;

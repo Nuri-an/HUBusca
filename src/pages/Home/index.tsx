@@ -46,7 +46,6 @@ export const Home: React.FC = () => {
                                 <CardComponent
                                     body={item.body}
                                     title={item.title}
-                                    index={index}
                                     isLast={index === (post.length - 1)}
                                     isProfile={false}
                                     userId={item.userId}
