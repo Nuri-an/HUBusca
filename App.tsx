@@ -12,6 +12,7 @@ import Routes from './src/routes';
 
 import PostsContext from './src/contexts/Posts/index';
 import { usePost } from './src/hooks/usePost';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const { getPost, storePost, removePost } = usePost();
@@ -29,6 +30,7 @@ export default function App() {
   } else {
     return (
       <PostsContext.Provider value={{ getPost, storePost, removePost }}>
+        <StatusBar animated={true} backgroundColor="transparent" hidden={true} />
         <Routes />
       </PostsContext.Provider>
     );
