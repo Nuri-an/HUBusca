@@ -14,12 +14,18 @@ export const Header = styled.View`
     border-bottom-width: 1px;
 `;
 
-export const Box = styled.ScrollView`
+export const Box = styled.FlatList`
     flex: 1;
     padding-top: 50px;
     padding-right: 20px;
+    margin-bottom: 50px;
 `;
 
 export const Loading = styled.ActivityIndicator`
     margin-left: 20px;
+    margin-top: 100px;
+`;
+
+export const Footer = styled.View`
+   height: 50px;
 `;
