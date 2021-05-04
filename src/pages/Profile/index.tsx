@@ -44,7 +44,7 @@ export const Profile: React.FC = () => {
                 <Toast ref={(ref) => Toast.setRef(ref)} />
                 <Box ref={scrollViewRef}>
                     {
-                        post?.length === 0
+                        (post?.length === 0 || !post)
                             ? <TextEmpty > Você ainda não possui posts cadastrados! </TextEmpty>
                             : post?.map((item, index) => (
                                 <CardComponent
