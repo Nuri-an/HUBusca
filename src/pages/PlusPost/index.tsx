@@ -38,32 +38,33 @@ export const PlusPost: React.FC = () => {
     function handlePost() { //É acionado após a submissão do formulário. Faz a "inserção" do post na api e localmente, mostra uma mensagem Toast de sucesso ou erro e, caso seja sucesso, é enciado para a tela Meus Posts para visualizar o post criado
         setPost(dataForm).then(async (response) => {
             setSend(true);
-            await storePost(response)
-            if (response) {
-                Toast.show({
-                    type: 'success',
-                    visibilityTime: 3000,
-                    topOffset: 50,
-                    text1: 'Post enviado!',
-                    text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
-                });
-                setTimeout(() => {
-                    setSend(false);
-                    setDataForm(initialValue);
-                    navigation.navigate('Profile')
-                }, 5000);
-            } else {
-                Toast.show({
-                    type: 'error',
-                    visibilityTime: 4000,
-                    text1: 'Opsss!',
-                    text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
-                });
-                setTimeout(() => {
-                    setSend(false);
-                    setDataForm(initialValue);
-                }, 5000);
-            }
+            await storePost(response).then((res) => {
+                if (res) {
+                    Toast.show({
+                        type: 'success',
+                        visibilityTime: 3000,
+                        topOffset: 50,
+                        text1: 'Post enviado!',
+                        text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
+                    });
+                    setTimeout(() => {
+                        setSend(false);
+                        setDataForm(initialValue);
+                        navigation.navigate('Profile')
+                    }, 5000);
+                } else {
+                    Toast.show({
+                        type: 'error',
+                        visibilityTime: 4000,
+                        text1: 'Opsss!',
+                        text2: 'Não foi possível enviar seu post, algo de errado aconteceu 😕'
+                    });
+                    setTimeout(() => {
+                        setSend(false);
+                        setDataForm(initialValue);
+                    }, 5000);
+                }
+            })
         })
     }
 

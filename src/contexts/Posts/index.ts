@@ -4,7 +4,7 @@ import { PropsPost } from '../../services/@types/Posts';
 //Cria o contexto na aplicação
 interface PropsUsePost {
     getPost: () => Promise<Array<PropsPost> | undefined>,
-    storePost: (e: PropsPost) => Promise<void>,
+    storePost: (value: PropsPost) => Promise<boolean | undefined>,
     removePost: (index: number) => Promise<string | undefined>
 }
 

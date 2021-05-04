@@ -13,7 +13,7 @@ export const usePost = () => {
         }
     }
 
-    const storePost = async (value: PropsPost) => { //Insere um novo post, através da inserção de um novo objeto no início do array
+    const storePost = async (value: PropsPost): Promise<boolean | undefined> => { //Insere um novo post, através da inserção de um novo objeto no início do array
         try {
             AsyncStorage.getItem('@posts')
                 .then(async (posts) => {
@@ -21,6 +21,7 @@ export const usePost = () => {
                     newPost.unshift(value);
                     await AsyncStorage.setItem('@posts', JSON.stringify(newPost))
                 });
+                return true
         } catch (e) {
             console.log(e);
         }
