@@ -12,14 +12,14 @@ export const RoutesStack: React.FC = () => {
             <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{
+                options={{ //Retira o header da navegação Stack
                     header: () => null
                 }}
             />
             <Stack.Screen
                 name="User"
                 component={User}
-                options={{
+                options={{ //Retira o header da navegação Stack
                     header: () => null
                 }}
             />

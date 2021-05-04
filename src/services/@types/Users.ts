@@ -1,3 +1,5 @@
+//Arquivo que fornece a tipagem dos objetos - User para a aplicação
+
 export interface PropsUser {
     id: number,
     name: string,

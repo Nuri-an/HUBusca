@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 
 export const RoutesTabs: React.FC = () => {
 
-    const [keyboardStatus, setKeyboardStatus] = useState(false);
+    const [keyboardStatus, setKeyboardStatus] = useState(false); //Guarda o estado do teclado. Caso esteja esteja visível recebe ture, caso estaja invisível recebe false
 
     useEffect(() => {
         Keyboard.addListener("keyboardDidShow", () => setKeyboardStatus(true));
@@ -28,7 +28,7 @@ export const RoutesTabs: React.FC = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                tabBarIcon: ({ color, size }) => {
+                tabBarIcon: ({ color, size }) => { //Customiza os ícones dos botões Home e Meus Posts
 
                     if (route.name === 'Home') {
                         return (
@@ -48,7 +48,7 @@ export const RoutesTabs: React.FC = () => {
                         )
                     }
                 },
-                tabBarLabel: ({ focused, color }) => {
+                tabBarLabel: ({ focused, color }) => { //Customiza os labels dos botões Home e Meus Posts
                     return (
                         <Typogaphy color={color} focused={focused}>
                             {
@@ -62,7 +62,7 @@ export const RoutesTabs: React.FC = () => {
                     )
                 },
             })}
-            tabBarOptions={{
+            tabBarOptions={{ //Customiza toda barra
                 keyboardHidesTabBar: true,
                 activeTintColor: '#8367F6',
                 inactiveTintColor: '#0057FF',
@@ -82,7 +82,7 @@ export const RoutesTabs: React.FC = () => {
                 name="Plus"
                 component={PlusPost}
                 options={{
-                    tabBarIcon: ({ color, size }) => {
+                    tabBarIcon: ({ color, size }) => { //Customiza o ícone do botão Plus. Invisível caso o teclado esteja visível e vice-versa
                         if (keyboardStatus) {
                             return
                         } else {

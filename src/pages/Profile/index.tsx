@@ -9,12 +9,14 @@ import { CardComponent } from '../../components/Card';
 import Image from '../../assets/Profile/profile.jpg';
 import Toast from 'react-native-toast-message';
 
+//Nessa página é listado todos os posts do usuário atual
+
 export const Profile: React.FC = () => {
     const { getPost, removePost } = useContext(PostsContext);
-    const [post, setPost] = useState<Array<PropsPost>>();
-    const scrollViewRef = useRef(null) as any;
+    const [post, setPost] = useState<Array<PropsPost>>(); //Receberá o arrays contendo todos os posts do usuário atual
+    const scrollViewRef = useRef(null) as any; //Receberá a referência da scrollView para fazer o scroll da tela ao topo, após a criação ou remoção de items
 
-    useEffect(() => {
+    useEffect(() => { //Recarrega a lista e faz o scroll, sempre que os posts armazenados localmente se alterarem
         loadPost();
     }, [getPost()]);
 

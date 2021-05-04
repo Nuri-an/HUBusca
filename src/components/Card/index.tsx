@@ -15,6 +15,8 @@ interface Props {
     remove?: () => void
 }
 
+//Component card, contém as informações do post (título, descrição, autor e função para excluir - apenas na listagem do usuário atual). Será usado nas páginas Home e Meus Posts
+
 export const CardComponent: React.FC<Props> = ({
     isLast,
     isProfile,

@@ -21,19 +21,21 @@ import {
     Title
 } from './styles';
 
+//Nessa página é possível adicionar um novo post
+
 export const PlusPost: React.FC = () => {
-    const initialValue = {
+    const initialValue = { //Valores iniciais do formulário
         userId: undefined,
         id: undefined,
         title: '',
         body: ''
     }
-    const [dataForm, setDataForm] = useState<PropsPost>(initialValue);
-    const [send, setSend] = useState(false);
+    const [dataForm, setDataForm] = useState<PropsPost>(initialValue); //Receberá os valores do formulário
+    const [send, setSend] = useState(false); //Receberá a informação se o formulário foi submetido ou não
     const { storePost } = useContext(AuthContext);
     const navigation = useNavigation();
 
-    function handlePost() {
+    function handlePost() { //É acionado após a submissão do formulário. Faz a "inserção" do post na api e localmente, mostra uma mensagem Toast de sucesso ou erro e, caso seja sucesso, é enciado para a tela Meus Posts para visualizar o post criado
         setPost(dataForm).then(async (response) => {
             setSend(true);
             await storePost(response)

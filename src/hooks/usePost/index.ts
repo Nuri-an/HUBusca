@@ -1,8 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PropsPost } from '../../services/@types/Posts';
 
+//Hooks para alterem os posts armazenados localmente
+
 export const usePost = () => {
-    const getPost = async (): Promise<Array<PropsPost> | undefined> => {
+    const getPost = async (): Promise<Array<PropsPost> | undefined> => { //Retorna uma Promise com todos os posts
         try {
             const myPosts = await AsyncStorage.getItem('@posts')
             return myPosts != null ? JSON.parse(myPosts) : undefined;
@@ -11,7 +13,7 @@ export const usePost = () => {
         }
     }
 
-    const storePost = async (value: PropsPost) => {
+    const storePost = async (value: PropsPost) => { //Insere um novo post, através da inserção de um novo objeto no início do array
         try {
             AsyncStorage.getItem('@posts')
                 .then(async (posts) => {
@@ -24,7 +26,7 @@ export const usePost = () => {
         }
     }
 
-    const removePost = async ( index: number ): Promise<string | undefined> => {
+    const removePost = async ( index: number ): Promise<string | undefined> => { //Remove um post através de sua posição no array. Através da função splice() o objeto é removido do array de posts. Retorna uma mensagem de sucesso
         try {
             await AsyncStorage.getItem('@posts')
                 .then(async (posts) => {

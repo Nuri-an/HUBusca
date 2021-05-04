@@ -9,10 +9,12 @@ import { PropsUser } from '../../services/@types/Users'
 import { getAllPosts, getAllUser } from '../../services';
 import { CardComponent } from '../../components/Card';
 
+//Nessa página é possível ver a listagem de todos os posts fornecidos pela api
+
 export const Home: React.FC = () => {
-    const [posts, setPosts] = useState<Array<PropsPost>>();
-    const [postsPerPage, setPostsPerPage] = useState<Array<PropsPost>>();
-    const [users, setUsers] = useState<Array<PropsUser>>();
+    const [posts, setPosts] = useState<Array<PropsPost>>(); //Receberá o arrays contendo todos os posts
+    const [postsPerPage, setPostsPerPage] = useState<Array<PropsPost>>(); //Receberá partes da constante posts, de 4 em 4, para criar o scroll infinito
+    const [users, setUsers] = useState<Array<PropsUser>>(); //Receberá o arrays contendo todos os usuários, para encontrar o username do autor
 
     useEffect(() => {
         getAllPosts().then(async (response) => {
@@ -27,17 +29,17 @@ export const Home: React.FC = () => {
 
     useEffect(() => {
         if (posts) {
-            setPostsPerPage(posts?.slice(0, 5))
+            setPostsPerPage(posts?.slice(0, 5)) //Popula postsPerPage com os 4 primeiros items da lista total
         }
     }, [posts])
 
-    function GetUsername(id: number | undefined) {
+    function GetUsername(id: number | undefined) {  //Busca e retorna o username do autor da postagem
         const user = users?.find(user => user.id === id);
 
         return user?.username;
     }
 
-    function handlePosts(initial: number | undefined) {
+    function handlePosts(initial: number | undefined) { //Popula postsPerPage com mais 4 objetos, se existirem, quando a lista se aproxima do fim
         if (initial !== undefined && posts) {
             if (posts.length > 0) {
                 let newsPosts = postsPerPage;

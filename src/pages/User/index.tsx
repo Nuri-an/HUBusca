@@ -33,9 +33,11 @@ type ParamList = {
     };
 };
 
+//Nessa página é possível ver as informações de um usuário específico
+
 export const User: React.FC = () => {
-    const route = useRoute<RouteProp<ParamList, 'User'>>();
-    const [user, setUser] = useState<PropsUser>();
+    const route = useRoute<RouteProp<ParamList, 'User'>>(); //Irá acessar o parametro idUser, id do usuário, que será enviado na navegação
+    const [user, setUser] = useState<PropsUser>(); //Receberá o objeto - user, contendo as informações do usuário que faz referência ao idUser enviado
     const navigation = useNavigation();
 
     useEffect(() => {

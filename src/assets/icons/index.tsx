@@ -10,6 +10,7 @@ import { PlusIcon } from "./Plus"
 import { TrashIcon } from "./Trash"
 import { UserIcon } from "./User"
 
+//Retorna os ícones/imagens que serão utilizados na aplicação
 
 export {
     ChevronLeftIcon,
