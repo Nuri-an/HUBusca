@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_500Medium_Italic,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+
+import Routes from './src/routes';
+
+import PostsContext from './src/contexts/Posts/index';
+import { usePost } from './src/hooks/usePost';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const { getPost, storePost, removePost } = usePost(); //hooks customizados, que alteram o arrays de posts local pelo Async Storage 
+  
+  const [fontsLoaded] = useFonts({ //Fonts utilizadas na aplicação
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_500Medium_Italic,
+    Poppins_700Bold
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontsLoaded) { //Verifica se as fontes já foram carregadas
+    return <AppLoading />;
+
+  } else { //Retorna as rotas da aplicação (Tab e Stack), englobadas pelo contexto, que possui como valor os hooks customizados
+    return (
+      <PostsContext.Provider value={{ getPost, storePost, removePost }}>
+        <Routes />
+      </PostsContext.Provider>
+    );
+  };
+}
