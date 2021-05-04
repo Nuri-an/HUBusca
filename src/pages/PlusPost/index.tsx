@@ -40,7 +40,8 @@ export const PlusPost: React.FC = () => {
             if (response) {
                 Toast.show({
                     type: 'success',
-                    visibilityTime: 4000,
+                    visibilityTime: 3000,
+                    topOffset: 50,
                     text1: 'Post enviado!',
                     text2: 'Tudo certo! Seu post foi enviado com sucesso 🎉'
                 });
@@ -84,7 +85,7 @@ export const PlusPost: React.FC = () => {
                             1. Informe aqui o título do seu post:
                         </Label>
                         <Input
-                            placeholder="Título do seu post"
+                            placeholder="Título"
                             onChangeText={(val) => setDataForm({
                                 ...dataForm,
                                 title: val
@@ -97,7 +98,7 @@ export const PlusPost: React.FC = () => {
                             2. Informe aqui a descrição do seu post:
                         </Label>
                         <TextArea
-                            placeholder="Descrição do seu post"
+                            placeholder="Descrição"
                             multiline={true}
                             numberOfLines={12}
                             textAlignVertical="top"

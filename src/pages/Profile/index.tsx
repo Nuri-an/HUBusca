@@ -57,10 +57,11 @@ export const Profile: React.FC = () => {
                                         await removePost(index);
                                         loadPost()
                                         Toast.show({
-                                            type: 'success',
+                                            type: 'error',
                                             visibilityTime: 3000,
+                                            topOffset: 50,
                                             text1: 'Post removido!',
-                                            text2: 'Tudo certo! Seu post foi removido com sucesso 🎉'
+                                            text2: 'Tudo certo! Seu post foi removido com sucesso.'
                                         });
                                     }}
                                 />
