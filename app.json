@@ -27,20 +27,15 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.nucorp.hubusca",
       "versionCode": 1
     },
-    "androidStatusBar": {
-      "backgroundColor": "#E02041",
-      "hidden": true
-    },
     "notification": {
-      "icon": "./assets/icon_.png",
+      "icon": "./assets/icon.png",
       "color": "#E02041"
-    },
-    "EXPO_DEBUG": true
+    }
   }
 }
