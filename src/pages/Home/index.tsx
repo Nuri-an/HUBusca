@@ -13,7 +13,7 @@ import { CardComponent } from '../../components/Card';
 
 export const Home: React.FC = () => {
     const [posts, setPosts] = useState<Array<PropsPost>>(); //Receberá o arrays contendo todos os posts
-    const [postsPerPage, setPostsPerPage] = useState<Array<PropsPost>>(); //Receberá partes da constante posts, de 4 em 4, para criar o scroll infinito
+    const [postsPerPage, setPostsPerPage] = useState<Array<PropsPost>>(); //Receberá partes da constante posts, de 5 em 5, para criar o scroll infinito
     const [users, setUsers] = useState<Array<PropsUser>>(); //Receberá o arrays contendo todos os usuários, para encontrar o username do autor
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export const Home: React.FC = () => {
 
     useEffect(() => {
         if (posts) {
-            setPostsPerPage(posts?.slice(0, 5)) //Popula postsPerPage com os 4 primeiros items da lista total
+            setPostsPerPage(posts?.slice(0, 5)) //Popula postsPerPage com os 5 primeiros items da lista total
         }
     }, [posts])
 
@@ -69,7 +69,7 @@ export const Home: React.FC = () => {
                                 data={postsPerPage}
                                 keyExtractor={(post: unknown, index: number) => String(index)}
                                 onEndReached={() => handlePosts(postsPerPage?.length)}
-                                onEndReachedThreshold={0.1}
+                                onEndReachedThreshold={0.2}
                                 renderItem={({ item }: any) => (
                                     <CardComponent
                                         body={item.body}
