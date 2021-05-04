@@ -2,6 +2,11 @@
   "expo": {
     "name": "HUBusca",
     "slug": "HUBusca",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,16 +22,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nucorp.hubusca"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.nucorp.hubusca",
+      "versionCode": 1
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "androidStatusBar": {
+      "backgroundColor": "#E02041",
+      "hidden": true
+    },
+    "notification": {
+      "icon": "./assets/icon_.png",
+      "color": "#E02041"
+    },
+    "EXPO_DEBUG": true
   }
 }
