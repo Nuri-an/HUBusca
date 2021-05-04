@@ -8,7 +8,7 @@
 <br />
 
 ## 🧾 Sobre a  aplicação
-Esse aplicativo criado em React Native + Expo consiste em um app fictício que consome uma api falsa gratuita, disponível aqui. 
+Esse aplicativo criado em React Native + Expo consiste em um app fictício que consome uma api falsa gratuita, [disponível aqui](https://jsonplaceholder.typicode.com/guide/). 
 Ele lista as postagens fornecidas pelo servidor, mostra informações do usuário que a criou, cria postagens localmente e exclui postagens localmente. 
 A api possibilita criar e excluir postagens, mas a ação não gera uma alteração real na base de dados, devido a isso, foi utilizado o armazenamento local. 
 
@@ -27,7 +27,7 @@ Esse projeto foi desenvolvido em TypeScript e fez uso das seguintes dependência
 <br />
 
 ## 💡 Como funciona?
-A aplicação utiliza um menu Tab Button para a navegação.
+A aplicação utiliza um menu Tab Bottom para a navegação.
 
 Ao abrir o aplicativo, após a splash screen, é exibido a tela Home. 
 Nela, há um scroll infinito com todas as postagens fornecidas pela api, dispostas em cards contendo nome, descrição e autor. 
@@ -51,6 +51,6 @@ Caso essa lista esteja vazia, uma mensagem informando essa situação será most
 3. Inicie o projeto: `expo start`, `npm start` ou `yarn start`
 4. Siga as [instruções do Expo](https://docs.expo.io/guides/testing-on-devices/) para rodar o projeto em um emulador Android ou iOS, 
 ou em celular físico através do app Expo disponível nas lojas de aplicativos. Nesse último caso, basta ler o qrCode disponível na tela.
-5. Se preferir, baixe o apk disponível [aqui]() (apenas android)
+5. Se preferir, baixe o apk disponível [aqui](https://1drv.ms/u/s!Am5aaoOztMaVmDoyQ-W0OjGAj4nu?e=1fXwPu) (apenas android)
 
 <br /><br />
